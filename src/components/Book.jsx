@@ -2,11 +2,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import PropTypes from "prop-types";
 
-const Book = ({ book, handleRemoveBook }) => {
-  const removeBook = () => {
-    handleRemoveBook(book.id);
-  };
-
+const Book = ({ book }) => {
   return (
     <div>
       <div className="book-left">
@@ -18,7 +14,7 @@ const Book = ({ book, handleRemoveBook }) => {
           </div>
           <div className="interactions">
             <button type="button">Comments</button> |
-            <button type="button" onClick={removeBook}>
+            <button type="button">
               Remove
             </button>{" "}
             |<button type="button">Edit</button>
@@ -49,7 +45,6 @@ Book.propTypes = {
     chapter: PropTypes.string.isRequired,
     completed: PropTypes.string.isRequired,
   }).isRequired,
-  handleRemoveBook: PropTypes.func.isRequired,
 };
 
 export default Book;
