@@ -1,25 +1,35 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Book from "./Book";
 import CreateABookForm from "./CreateABookForm";
+import { getBooks } from "../redux/books/booksSlice";
 
 const BookList = () => {
-  const books = useSelector((store) => store.bookstore.books);
+  const dispatch = useDispatch();
 
-   const saveBooksToLocalStorage = (items) => {
-     localStorage.setItem("booksData", JSON.stringify(items));
-   };
-  
-   useEffect(() => {
-     saveBooksToLocalStorage(books);
-   }, [books]);
+  const { books, isLoading } = useSelector((store) => store.bookstore);
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  const booksArray = Object.entries(books).reduce((acc, [id, bookList]) => {
+    const booksWithId = bookList.map((book) => ({ ...book, id }));
+    return [...acc, ...booksWithId];
+  }, []);
 
   return (
     <div>
-      {books.map((book) => (
-        <Book key={book.item_id} book={book} />
-      ))}
-      <CreateABookForm />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {booksArray.map((book) => (
+            <Book key={book.id} book={book} />
+          ))}
+          <CreateABookForm />
+        </>
+      )}
     </div>
   );
 };

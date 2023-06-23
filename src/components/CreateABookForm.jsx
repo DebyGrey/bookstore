@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBook } from "../redux/books/booksSlice";
+import { postBook, getBooks } from "../redux/books/booksSlice";
 
 const CreateABookForm = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !author) return;
-    dispatch(addBook([title, author]));
-    setTitle("");
-    setAuthor("");
+    try {
+      await dispatch(postBook([title, author]));
+      setTitle("");
+      setAuthor("");
+      await dispatch(getBooks());
+    } catch (error) {
+      console.log(error);
+    }
   };
-
 
   return (
     <div className="form-wrapper">
