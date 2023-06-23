@@ -1,23 +1,36 @@
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { removeBook } from "../redux/books/booksSlice";
+import Button from "./Button";
+
 
 const Book = ({ book }) => {
+  const dispatch = useDispatch();
+  
   return (
     <div>
       <div className="book-left">
         <div className="book-details-container">
           <div className="book-details">
-            <h6>{book.genre}</h6>
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
+            <h6 className="genre">{book.category}</h6>
+            <h3 className="title">{book.title}</h3>
+            <p className="author">{book.author}</p>
           </div>
           <div className="interactions">
-            <button type="button">Comments</button> |
-            <button type="button">
+            <button className="comments" type="button">Comments</button>|
+            <Button
+              className="remove"
+              onClick={() => {
+                dispatch(removeBook(book.item_id));
+              }}
+            >
               Remove
-            </button>{" "}
-            |<button type="button">Edit</button>
+            </Button>|
+            <button className="edit"  type="button">
+              Edit
+            </button>
           </div>
         </div>
         <div className="progress-bar">
@@ -38,8 +51,8 @@ const Book = ({ book }) => {
 
 Book.propTypes = {
   book: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    item_id: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     chapter: PropTypes.string.isRequired,
