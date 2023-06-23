@@ -22,9 +22,9 @@ const CreateABookForm = () => {
   };
 
   return (
-    <Section className="form-wrapper">
+    <Section>
       <h1 className="title">ADD NEW BOOK</h1>
-      <form className="book-form">
+      <form className="form">
         <input
           className="book-title"
           type="text"
@@ -39,7 +39,7 @@ const CreateABookForm = () => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <button className="add-book-btn" type="submit" onClick={handleSubmit}>
+        <button className="add-book" type="submit" onClick={handleSubmit}>
           ADD BOOK
         </button>
       </form>
@@ -50,11 +50,17 @@ const CreateABookForm = () => {
 export default CreateABookForm;
 
 const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   border-top: 1px solid #e8e8e8;
-  margin: 2rem 6.25rem;
+  margin: 2rem 3rem;
+  padding: 2rem 1.5rem;
+  height: 150px;
+  background-color: #fafafa;
   .title {
     height: 1.5rem;
-    margin: 1.813rem 32.75rem 1.188rem 0;
+    // margin: 1.813rem 32.75rem 1.188rem 0;
     font-size: 1.25rem;
     font-weight: bold;
     font-stretch: normal;
@@ -63,12 +69,28 @@ const Section = styled.section`
     letter-spacing: -0.18px;
     color: #888;
   }
-  .book-form {
+  .form {
     display: flex;
-    justify-content: space-between;
-    
-    .add-book-btn {
-      height: 2.813rem;
+    justify-content: space-around;
+
+    .book-title {
+      height: 50px;
+      border-radius: 4px;
+      border: solid 1px var(--white);
+      background-color: #fff;
+      padding-left: 1rem;
+      width: 55.15%;
+    }
+    .book-author {
+      height: 50px;
+      border-radius: 4px;
+      border: solid 1px var(--white);
+      background-color: #fff;
+      padding-left: 1rem;
+      width: 23.67%;
+    }
+    .add-book {
+      height: 50;
       border-radius: 3px;
       color: #fff;
       background-color: #2e90f0;

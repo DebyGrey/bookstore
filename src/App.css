@@ -58,25 +58,3 @@ nav ul li a {
   color: #7b7b7b;
   list-style: none;
 }
-
-.form-wrapper {
-  padding: 4% 8%;
-  border-top: 1px solid #7b7b7b;
-}
-
-.add-book-btn {
-  padding: 1% 1%;
-  width: 20%;
-  height: 50px;
-  background-color: #2a8ff7;
-  color: #fff;
-}
-
-.book-form input {
-  height: 50px;
-  width: 50%;
-  border: 1px solid #eaeaea;
-  border-radius: 4px;
-  background-color: #fff;
-  padding-left: 1rem;
-}
